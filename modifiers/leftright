@@ -1,0 +1,1 @@
+sox $1 $2 channels 2 bend 0,-1000,1 delay 0 +0.1

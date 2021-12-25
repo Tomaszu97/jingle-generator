@@ -1,0 +1,4 @@
+tmp1="$(mktemp --suffix=.wav)"
+(( $(echo "$(soxi -D $1) > 0.5" |bc -l) )) || exit
+sox $1 $tmp1 trim 0.0 0.15
+sox $tmp1 $tmp1 $1 $2
