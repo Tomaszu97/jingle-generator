@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -ae
 EFFECTS_DIR="effects"
 VOICES_DIR="voices"
 MODIFIERS_DIR="modifiers"
@@ -108,8 +108,8 @@ do
     curr_file="$(head -n 1 <(echo "$mix_list"))"
     test -n "$curr_file" ||  break
     mix_list="$(tail -n +2 <(echo "$mix_list"))"
-    (( $(echo "$(soxi -D $prev_file) > 0.5" |bc -l) )) && \
-    (( $(echo "$(soxi -D $curr_file) > 0.5" |bc -l) )) && \
+    (( $(echo "$(soxi -D $prev_file) > 3" |bc -l) )) && \
+    (( $(echo "$(soxi -D $curr_file) > 3" |bc -l) )) && \
     ./crossfade_cat.sh 0.25 "$prev_file" "$curr_file"
     mv "mix.wav" "$curr_file"
     prev_file="$curr_file"
