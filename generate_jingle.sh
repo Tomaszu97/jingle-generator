@@ -110,7 +110,8 @@ do
     mix_list="$(tail -n +2 <(echo "$mix_list"))"
     (( $(echo "$(soxi -D $prev_file) > 3" |bc -l) )) && \
     (( $(echo "$(soxi -D $curr_file) > 3" |bc -l) )) && \
-    ./crossfade_cat.sh 0.25 "$prev_file" "$curr_file"
+    ./crossfade_cat.sh 0.25 "$prev_file" "$curr_file" || \
+    sox "$prev_file" "$curr_file" "mix.wav"
     mv "mix.wav" "$curr_file"
     prev_file="$curr_file"
 done
