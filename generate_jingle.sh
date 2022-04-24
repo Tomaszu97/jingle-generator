@@ -32,7 +32,7 @@ rm "${WORK_DIR}/${INPUT}"
 sox "${WORK_DIR}/1.wav" "${WORK_DIR}/chunk.wav" channels 2 silence 1 0.1t 1% 1 0.1t 1% : newfile : restart
 rm "${WORK_DIR}/1.wav"
 test "$(ls -1 "$WORK_DIR" | grep -E '^chunk.*' | wc -l)" -gt "1" && \
-rm "${WORK_DIR}/$(ls -1 "$WORK_DIR" | grep -E '^chunk.*' | tail -n 1)"
+#rm "${WORK_DIR}/$(ls -1 "$WORK_DIR" | grep -E '^chunk.*' | tail -n 1)"
 
 ## do or do not choose additional voice depending on luck and plug as another voice
 ##if [ "$(echo "${RANDOM} % 100 + 1" | bc)" -lt 30 ]
